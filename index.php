@@ -4,7 +4,7 @@ include_once "config/constants.php";
 include_once "config/db.php";
 
 if (isset($_GET['controller'])) {
-    $controller = getControllerPath($_GET['controller']);
+    $controller = CONTROLLERS . $_GET['controller' . "Controller.php";
     $fileExists = file_exists($controller);
     if ($fileExists) {
         require_once $controller;
@@ -14,9 +14,4 @@ if (isset($_GET['controller'])) {
     }
 } else {
     require_once VIEWS . "main/main.php";
-}
-
-function getControllerPath($controller): string
-{
-    return CONTROLLERS . $controller . "Controller.php";
 }
