@@ -20,7 +20,7 @@
             echo "<p>$error</p>";
         }
         ?>
-        <form class="mb-5 needs-validation" action="index.php?controller=employee&action=<?php echo isset($employee['id']) ? "updateEmployee" : "createEmployee" ?>" method="post">
+        <form class="mb-5 needs-validation" action="index.php?controller=Employee&action=<?php echo isset($employee['id']) ? "updateEmployee" : "createEmployee" ?>" method="post">
             <input type="hidden" name="id" value="<?php echo isset($employee['id']) ? $employee['id'] : null ?>">
             <div class="form-row">
                 <div class="col">
@@ -104,7 +104,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
-            <a id="return" class="btn btn-secondary" href="<?php echo "?controller=employee&action=getAllEmployees&action=getAllEmployees"; ?>">Return</a>
+            <a id="return" class="btn btn-secondary" href="<?php echo "?controller=Employee&action=getAllEmployees&action=getAllEmployees"; ?>">Return</a>
         </form>
     </div>
 </body>

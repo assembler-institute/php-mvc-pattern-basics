@@ -41,7 +41,7 @@ function createEmployee($request)
         $employee = create($_POST);
 
         if ($employee[0]) {
-            header("Location: index.php?controller=employee&action=getAllEmployees");
+            header("Location: index.php?controller=Employee&action=getAllEmployees");
         } else {
             echo $employee[1];
         }
@@ -57,7 +57,7 @@ function updateEmployee($request)
         $employee = update($_POST);
 
         if ($employee[0]) {
-            header("Location: index.php?controller=employee&action=getAllEmployees");
+            header("Location: index.php?controller=Employee&action=getAllEmployees");
         } else {
             $employee = $_POST;
             $error = "The data entered is incorrect, check that there is no other employee with that email.";
@@ -74,7 +74,7 @@ function deleteEmployee($request)
     $employee = null;
     if (isset($request["id"])) {
         $employee = delete($request["id"]);
-        header("Location: index.php?controller=employee&action=getAllEmployees");
+        header("Location: index.php?controller=Employee&action=getAllEmployees");
     }
 }
 

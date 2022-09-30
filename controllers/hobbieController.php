@@ -41,7 +41,7 @@ function createHobbie($request)
         $hobbie = create($_POST);
 
         if ($hobbie[0]) {
-            header("Location: index.php?controller=hobbie&action=getAllHobbies");
+            header("Location: index.php?controller=Hobbie&action=getAllHobbies");
         } else {
             echo $hobbie[1];
         }
@@ -58,7 +58,7 @@ function updateHobbie($request)
 
         if ($hobbie[0]) {
             echo "header dashboard";
-            header("Location: index.php?controller=hobbie&action=getAllHobbies");
+            header("Location: index.php?controller=Hobbie&action=getAllHobbies");
         } else {
             $hobbie = $_POST;
             $error = "The data entered is incorrect, check that there is no other hobbie with that email.";
@@ -75,7 +75,7 @@ function deleteHobbie($request)
     $hobbie = null;
     if (isset($request["id"])) {
         $hobbie = delete($request["id"]);
-        header("Location: index.php?controller=hobbie&action=getAllHobbies");
+        header("Location: index.php?controller=Hobbie&action=getAllHobbies");
     }
 }
 

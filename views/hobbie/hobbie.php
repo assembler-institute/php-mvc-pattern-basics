@@ -20,7 +20,7 @@
             echo "<p>$error</p>";
         }
         ?>
-        <form class="mb-5 needs-validation" action="?controller=hobbie&action=<?php echo isset($hobbie['id']) ? "updateHobbie" : "createHobbie" ?>" method="post">
+        <form class="mb-5 needs-validation" action="?controller=Hobbie&action=<?php echo isset($hobbie['id']) ? "updateHobbie" : "createHobbie" ?>" method="post">
             <input type="hidden" name="id" value="<?php echo isset($hobbie['id']) ? $hobbie['id'] : null ?>">
             <div class="form-row">
                 <div class="col">
@@ -38,7 +38,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <a id="return" class="btn btn-secondary" href="<?php echo "?controller=hobbie&action=getAllHobbies&action=getAllHobbies"; ?>">Return</a>
+                    <a id="return" class="btn btn-secondary" href="<?php echo "?controller=Hobbie&action=getAllHobbies&action=getAllHobbies"; ?>">Return</a>
         </form>
     </div>
 </body>
