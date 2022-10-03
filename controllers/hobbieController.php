@@ -65,7 +65,7 @@ class HobbieController
         $action = $request["action"];
         $hobbie = null;
         if (isset($request["id"])) {
-            $hobbie = delete($request["id"]);
+            $hobbie = $this->model->delete($request["id"]);
             header("Location: index.php?controller=Hobbie&action=getAllHobbies");
         }
     }
