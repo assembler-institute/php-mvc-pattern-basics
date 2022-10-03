@@ -14,26 +14,26 @@
         </br>
 
         <?php
-        if ($action == "getHobbie" && (!isset($hobbie) || !$hobbie || sizeof($hobbie) == 0)) {
+        if ($this->$action == "getHobbie" && (!isset($this->data) || !$this->data || sizeof($this->data) == 0)) {
             echo "<p>The hobbie does not exists!</p>";
         } else if (isset($error)) {
             echo "<p>$error</p>";
         }
         ?>
-        <form class="mb-5 needs-validation" action="?controller=Hobbie&action=<?php echo isset($hobbie['id']) ? "updateHobbie" : "createHobbie" ?>" method="post">
-            <input type="hidden" name="id" value="<?php echo isset($hobbie['id']) ? $hobbie['id'] : null ?>">
+        <form class="mb-5 needs-validation" action="?controller=Hobbie&action=<?php echo isset($this->data['id']) ? "updateHobbie" : "createHobbie" ?>" method="post">
+            <input type="hidden" name="id" value="<?php echo isset($this->data['id']) ? $this->data['id'] : null ?>">
             <div class="form-row">
                 <div class="col">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input required type="text" value="<?php echo isset($hobbie['name']) ? $hobbie['name'] : null ?>" class="form-control" id="name" name="name" aria-describedby="name" placeholder="Enter name">
+                        <input required type="text" value="<?php echo isset($this->data['name']) ? $this->data['name'] : null ?>" class="form-control" id="name" name="name" aria-describedby="name" placeholder="Enter name">
                     </div>
                     <div class="form-group">
                         <label for="type">Type</label>
                         <select name="type" class="form-control" id="type" required>
                             <option value="">Please Select</option>
-                            <option value="Indoor" <?php echo isset($hobbie['type']) && $hobbie['type']  == "Indoor" ? 'selected' : null; ?>>Indoor</option>
-                            <option value="Outdoor" <?php echo isset($hobbie['type']) && $hobbie['type']  == "Outdoor" ? 'selected' : null; ?>>Outdoor</option>
+                            <option value="Indoor" <?php echo isset($this->data['type']) && $this->data['type']  == "Indoor" ? 'selected' : null; ?>>Indoor</option>
+                            <option value="Outdoor" <?php echo isset($this->data['type']) && $this->data['type']  == "Outdoor" ? 'selected' : null; ?>>Outdoor</option>
                         </select>
                     </div>
 
