@@ -4,7 +4,7 @@ class HobbieController
 {
     use Controller;
 
-    /* ~~~ CONTROLLER FUNCTIONS ~~~ */
+    /* ~~~ CONTROLLER METHODS ~~~ */
 
     function getAllHobbies()
     {
@@ -52,7 +52,7 @@ class HobbieController
                 header("Location: index.php?controller=Hobbie&action=getAllHobbies");
             } else {
                 $this->action = $request["action"];
-                $this->error = "The data entered is incorrect, check that there is no other employee with that email.";
+                $this->error = "The data entered is incorrect, check that there is no other hobbie with that name.";
                 $this->view->render("hobbie/hobbie");
             }
         } else {
