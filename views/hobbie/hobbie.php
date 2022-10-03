@@ -14,7 +14,7 @@
         </br>
 
         <?php
-        if ($this->$action == "getHobbie" && (!isset($this->data) || !$this->data || sizeof($this->data) == 0)) {
+        if ($this->action == "getHobbie" && (!isset($this->data) || !$this->data || sizeof($this->data) == 0)) {
             echo "<p>The hobbie does not exists!</p>";
         } else if (isset($error)) {
             echo "<p>$error</p>";
