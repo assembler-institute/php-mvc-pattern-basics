@@ -8,7 +8,6 @@ trait Controller
     function __construct()
     {
         $this->view = new View();
-        //$this->model = $this->loadModel("Employee");
         $this->model = $this->loadModel(substr(__CLASS__,0,-10));
 
         $action = "";
