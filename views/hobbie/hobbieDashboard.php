@@ -25,7 +25,7 @@
         </thead>
         <tbody>
             <?php
-            foreach ($hobbies as $index => $hobbie) {
+            foreach ($this->data as $index => $hobbie) {
                 echo "<tr>";
                 echo "<td class='tg-0lax'>" . $hobbie["id"] . "</td>";
                 echo "<td class='tg-0lax'>" . $hobbie["name"] . "</td>";
