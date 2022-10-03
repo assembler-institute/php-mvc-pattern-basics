@@ -1,7 +1,5 @@
 <?php
 
-require_once MODELS . "hobbieModel.php";
-
 class HobbieController
 {
     use Controller;
@@ -10,27 +8,29 @@ class HobbieController
 
     function getAllHobbies()
     {
-        $hobbies = get();
+        $hobbies = $this->model->get();
         if (isset($hobbies)) {
-            require_once VIEWS . "/hobbie/hobbieDashboard.php";
+            $this->view->data = $hobbies;
+            $this->view->render("hobbie/hobbieDashboard");
         }
     }
 
     function getHobbie($request)
     {
-        $action = $request["action"];
         $hobbie = null;
         if (isset($request["id"])) {
-            $hobbie = getById($request["id"]);
+            $hobbie = $this->model->getById($request["id"]);
         }
-        require_once VIEWS . "/hobbie/hobbie.php";
+
+        $this->view->action = $request["action"];
+        $this->view->data = $hobbie;
+        $this->view->render("hobbie/hobbie");
     }
 
     function createHobbie($request)
     {
-        $action = $request["action"];
         if (sizeof($_POST) > 0) {
-            $hobbie = create($_POST);
+            $hobbie = $this->model->create($_POST);
 
             if ($hobbie[0]) {
                 header("Location: index.php?controller=Hobbie&action=getAllHobbies");
@@ -38,26 +38,25 @@ class HobbieController
                 echo $hobbie[1];
             }
         } else {
-            require_once VIEWS . "/hobbie/hobbie.php";
+            $this->view->action = $request["action"];
+            $this->view->render("hobbie/hobbie");
         }
     }
 
     function updateHobbie($request)
     {
-        $action = $request["action"];
         if (sizeof($_POST) > 0) {
-            $hobbie = update($_POST);
+            $hobbie = $this->model->update($_POST);
 
             if ($hobbie[0]) {
-                echo "header dashboard";
                 header("Location: index.php?controller=Hobbie&action=getAllHobbies");
             } else {
-                $hobbie = $_POST;
-                $error = "The data entered is incorrect, check that there is no other hobbie with that email.";
-                require_once VIEWS . "/hobbie/hobbie.php";
+                $this->action = $request["action"];
+                $this->error = "The data entered is incorrect, check that there is no other employee with that email.";
+                $this->view->render("hobbie/hobbie");
             }
         } else {
-            require_once VIEWS . "/hobbie/hobbie.php";
+            $this->view->render("hobbie/hobbie");
         }
     }
 
