@@ -1,84 +1,72 @@
 <?php
 
-require_once MODELS . "employeeModel.php";
-
-$action = "";
-
-if (isset($_REQUEST["action"])) {
-    $action = $_REQUEST["action"];
-}
-
-if (function_exists($action)) {
-    call_user_func($action, $_REQUEST);
-} else {
-    error("Invalid user action");
-}
-
-/* ~~~ CONTROLLER FUNCTIONS ~~~ */
-
-function getAllEmployees()
+class EmployeeController
 {
-    $employees = get();
-    if (isset($employees)) {
-        require_once VIEWS . "/employee/employeeDashboard.php";
-    }
-}
+    use Controller;
 
-function getEmployee($request)
-{
-    $action = $request["action"];
-    $employee = null;
-    if (isset($request["id"])) {
-        $employee = getById($request["id"]);
-    }
-    require_once VIEWS . "/employee/employee.php";
-}
+    /* ~~~ CONTROLLER METHODS ~~~ */
 
-function createEmployee($request)
-{
-    $action = $request["action"];
-    if (sizeof($_POST) > 0) {
-        $employee = create($_POST);
-
-        if ($employee[0]) {
-            header("Location: index.php?controller=Employee&action=getAllEmployees");
-        } else {
-            echo $employee[1];
+    function getAllEmployees()
+    {
+        $employees = $this->model->get();
+        if (isset($employees)) {
+            $this->view->data = $employees;
+            $this->view->render("employee/employeeDashboard");
         }
-    } else {
-        require_once VIEWS . "/employee/employee.php";
     }
-}
 
-function updateEmployee($request)
-{
-    $action = $request["action"];
-    if (sizeof($_POST) > 0) {
-        $employee = update($_POST);
-
-        if ($employee[0]) {
-            header("Location: index.php?controller=Employee&action=getAllEmployees");
-        } else {
-            $employee = $_POST;
-            $error = "The data entered is incorrect, check that there is no other employee with that email.";
-            require_once VIEWS . "/employee/employee.php";
+    function getEmployee($request)
+    {
+        $employee = null;
+        if (isset($request["id"])) {
+            $employee = $this->model->getById($request["id"]);
         }
-    } else {
-        require_once VIEWS . "/employee/employee.php";
-    }
-}
 
-function deleteEmployee($request)
-{
-    $action = $request["action"];
-    $employee = null;
-    if (isset($request["id"])) {
-        $employee = delete($request["id"]);
-        header("Location: index.php?controller=Employee&action=getAllEmployees");
+        $this->view->action = $request["action"];
+        $this->view->data = $employee;
+        $this->view->render("employee/employee");
     }
-}
 
-function error($errorMsg)
-{
-    require_once VIEWS . "/error/error.php";
+    function createEmployee($request)
+    {
+        if (sizeof($_POST) > 0) {
+            $employee = $this->model->create($_POST);
+
+            if ($employee[0]) {
+                header("Location: index.php?controller=Employee&action=getAllEmployees");
+            } else {
+                echo $employee[1];
+            }
+        } else {
+            $this->view->action = $request["action"];
+            $this->view->render("employee/employee");
+        }
+    }
+
+    function updateEmployee($request)
+    {
+        if (sizeof($_POST) > 0) {
+            $employee = $this->model->update($_POST);
+
+            if ($employee[0]) {
+                header("Location: index.php?controller=Employee&action=getAllEmployees");
+            } else {
+                $this->action = $request["action"];
+                $this->error = "The data entered is incorrect, check that there is no other employee with that email.";
+                $this->view->render("employee/employee");
+            }
+        } else {
+            $this->view->render("employee/employee");
+        }
+    }
+
+    function deleteEmployee($request)
+    {
+        $action = $request["action"];
+        $employee = null;
+        if (isset($request["id"])) {
+            $employee = $this->model->delete($request["id"]);
+            header("Location: index.php?controller=Employee&action=getAllEmployees");
+        }
+    }
 }

@@ -28,7 +28,7 @@
         </thead>
         <tbody>
             <?php
-            foreach ($employees as $index => $employee) {
+            foreach ($this->data as $index => $employee) {
                 echo "<tr>";
                 echo "<td class='tg-0lax'>" . $employee["id"] . "</td>";
                 echo "<td class='tg-0lax'>" . $employee["name"] . "</td>";
