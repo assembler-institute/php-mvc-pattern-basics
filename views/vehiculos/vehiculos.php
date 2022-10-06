@@ -16,7 +16,7 @@
 
     <h2><?php echo $data['titulo']; ?></h2>
 
-    <a href="">Agregar</a>
+    <a href="index.php?c=vehiculos&a=nuevo">Agregar</a>
 
     <table width="80%" border="5">
         <thead>
@@ -26,6 +26,8 @@
                 <th>Año</th>
                 <th>Color</th>
                 <th>Placa</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
             </tr>
         </thead>
         <tbody>
@@ -37,6 +39,8 @@
                     echo "<td>".$dato['anio']."</td>";
                     echo "<td>".$dato['color']."</td>";
                     echo "<td>".$dato['placa']."</td>";
+                    echo "<td><a href='index.php?c=vehiculos&a=modificar&id=".$dato['id']."'>Modificar</a></td>";
+                    echo "<td><a href='index.php?c=vehiculos&a=eliminar&id=".$dato['id']."'>Eliminar</a></td>";
                     echo "</tr>"; 
                 }
             ?>
