@@ -10,11 +10,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php // echo $data['titulo']; ?></title>
+    <title><?php echo $data['titulo']; ?></title>
 </head>
 <body>
 
-    <h2><?php // echo $data['titulo']; ?></h2>
+    <h2><?php echo $data['titulo']; ?></h2>
 
     <form id="nuevo" name="nuevo" method="post" action="index.php?c=vehiculos&a=guarda">
         <label for="marca">Marca</label><br />
